@@ -42,6 +42,19 @@ class Router extends Dispatch
      * @param string|null $name
      * @param array|string|null $middleware
      */
+    public function head(
+        string $route,
+        callable|string $handler
+    ): void {
+        $this->addRoute("HEAD", $route, $handler);
+    }
+
+    /**
+     * @param string $route
+     * @param callable|string $handler
+     * @param string|null $name
+     * @param array|string|null $middleware
+     */
     public function post(
         string $route,
         callable|string $handler,

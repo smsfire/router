@@ -111,6 +111,14 @@ trait RouterTrait
             if (class_exists($controller)) {
                 $newController = new $controller($this);
                 if (method_exists($controller, $method)) {
+
+                    if ($this->httpMethod === 'HEAD') {
+                      ob_start();
+                      $newController->$method(($this->route['data'] ?? []));
+                      ob_end_clean();
+                      return true;
+                    }
+
                     $newController->$method(($this->route['data'] ?? []));
                     return true;
                 }
