@@ -115,6 +115,7 @@ trait RouterTrait
                     if ($this->httpMethod === 'HEAD') {
                       ob_start();
                       $newController->$method(($this->route['data'] ?? []));
+                      ob_clean();
                       ob_end_clean();
                       return true;
                     }
